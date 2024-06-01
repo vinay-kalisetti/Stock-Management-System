@@ -21,7 +21,7 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 	
-	// display list of employees
+	// display list of orders
 	@GetMapping("/")
 	public String viewHomePage(Model model) {
 		return findPaginated(1, "name", "asc", model);		
@@ -37,7 +37,7 @@ public class OrderController {
 	
 	@PostMapping("/saveOrder")
 	public String saveOrder(@ModelAttribute("order") Order order) {
-		// save employee to database
+		// save order to database
 		orderService.saveOrder(order);
 		return "redirect:/";
 	}
@@ -45,7 +45,7 @@ public class OrderController {
 	@GetMapping("/showFormForUpdate/{id}")
 	public String showFormForUpdate(@PathVariable ( value = "id") long id, Model model) {
 		
-		// get employee from the service
+		// get order from the service
 		Order order = orderService.getOrderById(id);
 		
 		// set employee as a model attribute to pre-populate the form
@@ -56,7 +56,7 @@ public class OrderController {
 	@GetMapping("/deleteOrder/{id}")
 	public String deleteOrder(@PathVariable (value = "id") long id) {
 		
-		// call delete employee method 
+		// call order employee method 
 		this.orderService.deleteOrderById(id);
 		return "redirect:/";
 	}
